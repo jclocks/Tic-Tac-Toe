@@ -34,7 +34,7 @@ def request_move():
         req_square = input('Input a square: ')
         print('Debug: ' + req_square)
         proceed = validate_input(req_square)	
-    mark_board(req_square, "X")
+    mark_board(req_square, player_choice)
 
 # Confirm move is valid. Checks against position and if slot is empty.
 def validate_input(i):
@@ -101,12 +101,18 @@ def check_win_o():
     else:
         return False
 
-# We need to determine a move. This is prioritized by: scoring a win, avoiding a loss, or a random move.
-# We need to put that move on the board.
-# We need to show this board to the player
-# We need to confirm if win or draw.
+# Select a game mode.
+def initialize_game():
+    global player_choice, opponent_type
+    player_choice, opponent_type = "", ""
+    while (player_choice != "X") and (player_choice != "O"):
+        player_choice = input("Please choose X or O: ")
+    while (opponent_type != "P") and (opponent_type != "C"):
+        opponent_type = input("Please type P to play another human, or C for the computer: ")
+    initialize_board()
 
-initialize_board()
+
+initialize_game()
 display_board()
 request_move()
 display_board()
