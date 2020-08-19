@@ -7,7 +7,7 @@ def initialize_board():
 	board = {
 		'ul': ' ', 'uc': ' ', 'ur': ' ',
 		'ml': ' ', 'mc': ' ', 'mr': ' ',
-		'll': 'X', 'lc': 'X', 'lr': 'X'
+		'll': ' ', 'lc': ' ', 'lr': ' '
 	}
 
 def display_board():
