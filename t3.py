@@ -22,7 +22,7 @@ def display_board():
 
 # Prompt for input. If valid, mark board.
 def request_move():
-    print('Please input a square. You\'re playing as X. They are:')
+    print('Please input a square. You\'re playing as ' + player_choice + '. They are:')
     print('ul|uc|ur')
     print('--------')
     print('ml|mc|mr')
