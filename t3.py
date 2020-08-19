@@ -32,7 +32,6 @@ def request_move():
     proceed = False
     while proceed == False:
         req_square = input('Input a square: ')
-        print('Debug: ' + req_square)
         proceed = validate_input(req_square)	
     mark_board(req_square, player_choice)
 
@@ -113,8 +112,17 @@ def initialize_game():
         opponent_type = opponent_type.upper()
     initialize_board()
 
-
+# Game flow
 initialize_game()
-display_board()
-request_move()
-display_board()
+game_over = False
+while game_over == False:
+    display_board()
+    request_move()
+    if (check_win_x() == True) or (check_win_o == True):
+        game_over = True
+if check_win_x() == True:
+    print("X wins!")
+elif check_win_o() == True:
+    print("O wins!")
+else:
+    print("Draw game!")
