@@ -107,8 +107,10 @@ def initialize_game():
     player_choice, opponent_type = "", ""
     while (player_choice != "X") and (player_choice != "O"):
         player_choice = input("Please choose X or O: ")
+        player_choice = player_choice.upper()
     while (opponent_type != "P") and (opponent_type != "C"):
         opponent_type = input("Please type P to play another human, or C for the computer: ")
+        opponent_type = opponent_type.upper()
     initialize_board()
 
 
