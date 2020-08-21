@@ -5,9 +5,9 @@ import os
 def initialize_board():
 	global board
 	board = {
-		'ul': ' ', 'uc': ' ', 'ur': ' ',
-		'ml': ' ', 'mc': ' ', 'mr': ' ',
-		'll': ' ', 'lc': ' ', 'lr': ' '
+		'ul': 'X', 'uc': 'X', 'ur': 'O',
+		'ml': 'O', 'mc': 'O', 'mr': 'X',
+		'll': 'X', 'lc': 'O', 'lr': ' '
 	}
 
 def display_board():
@@ -53,23 +53,23 @@ def mark_board(var_space, player_marker):
 # Return True if X won, False if not.
 def check_win_x():
     # Horizontals
-    if board["ul"] == "X" and board["uc"] == "X" and board["ur"] == "X":
+    if board["ul"] == board["uc"] == board["ur"] == "X":
         return True
-    elif board["ml"] == "X" and board["mc"] == "X" and board["mr"] == "X":
+    elif board["ml"] == board["mc"] == board["mr"] == "X":
         return True
-    elif board["ll"] == "X" and board["lc"] == "X" and board["lr"] == "X":
+    elif board["ll"] == board["lc"] == board["lr"] == "X":
         return True
     # Verticals
-    elif board["ul"] == "X" and board["ml"] == "X" and board["ll"] == "X":
+    elif board["ul"] == board["ml"] == board["ll"] == "X":
         return True
-    elif board["uc"] == "X" and board["mc"] == "X" and board["lc"] == "X":
+    elif board["uc"] == board["mc"] == board["lc"] == "X":
         return True
-    elif board["ur"] == "X" and board["mr"] == "X" and board["lr"] == "X":
+    elif board["ur"] == board["mr"] == board["lr"] == "X":
         return True
     # Diags
-    elif board["ul"] == "X" and board["mc"] == "X" and board["lr"] == "X":
+    elif board["ul"] == board["mc"] == board["lr"] == "X":
         return True
-    elif board["ll"] == "X" and board["mc"] == "X" and board["ur"] == "X":
+    elif board["ll"] == board["mc"] == board["ur"] == "X":
         return True
     # No win
     else:
@@ -78,25 +78,31 @@ def check_win_x():
 # Return True if O won, False if not.
 def check_win_o():
     # Horizontals
-    if board["ul"] == "O" and board["uc"] == "O" and board["ur"] == "O":
+    if board["ul"] == board["uc"] == board["ur"] == "O":
         return True
-    elif board["ml"] == "O" and board["mc"] == "O" and board["mr"] == "O":
+    elif board["ml"] == board["mc"] == board["mr"] == "O":
         return True
-    elif board["ll"] == "O" and board["lc"] == "O" and board["lr"] == "O":
+    elif board["ll"] == board["lc"] == board["lr"] == "O":
         return True
     # Verticals
-    elif board["ul"] == "O" and board["ml"] == "O" and board["ll"] == "O":
+    elif board["ul"] == board["ml"] == board["ll"] == "O":
         return True
-    elif board["uc"] == "O" and board["mc"] == "O" and board["lc"] == "O":
+    elif board["uc"] == board["mc"] == board["lc"] == "O":
         return True
-    elif board["ur"] == "O" and board["mr"] == "O" and board["lr"] == "O":
+    elif board["ur"] == board["mr"] == board["lr"] == "O":
         return True
     # Diags
-    elif board["ul"] == "O" and board["mc"] == "O" and board["lr"] == "O":
+    elif board["ul"] == board["mc"] == board["lr"] == "O":
         return True
-    elif board["ll"] == "O" and board["mc"] == "O" and board["ur"] == "O":
+    elif board["ll"] == board["mc"] == board["ur"] == "O":
         return True
     # No win
+    else:
+        return False
+
+def check_draw():
+    if ' ' not in board.values():
+        return True
     else:
         return False
 
@@ -118,7 +124,7 @@ game_over = False
 while game_over == False:
     display_board()
     request_move()
-    if (check_win_x() == True) or (check_win_o == True):
+    if (check_win_x() == True) or (check_win_o() == True) or (check_draw() == True):
         game_over = True
 if check_win_x() == True:
     print("X wins!")
