@@ -13,9 +13,9 @@ x_turn = True
 def display_board():
     print('Current board is:')
     print(board['ul'] + '|' + board['uc'] + '|' + board['ur'])
-    print('--------')
+    print('-----')
     print(board['ml'] + '|' + board['mc'] + '|' + board['mr'])
-    print('--------')
+    print('-----')
     print(board['ll'] + '|' + board['lc'] + '|' + board['lr'])
     print()
 
@@ -108,6 +108,7 @@ while game_over() == False:
         print('It\'s currently X\'s turn.')
     else:
         print('It\'s currently O\'s turn.')
+    print()
     # Display the board and help.
     display_board()
     display_help()
