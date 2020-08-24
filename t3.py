@@ -2,48 +2,43 @@
 
 import os
 
+# Rework of board variable.
 def initialize_board():
 	global board
-	board = {
-		'ul': 'X', 'uc': 'X', 'ur': 'O',
-		'ml': 'O', 'mc': 'O', 'mr': 'X',
-		'll': 'X', 'lc': 'O', 'lr': ' '
-	}
+	board = "         "
 
 def display_board():
     os.system('clear')
     print('Current board is:')
-    print(board['ul'] + '|' + board['uc'] + '|' + board['ur'])
+    print(board[0] + '|' + board[1] + '|' + board[2])
     print('-----')
-    print(board['ml'] + '|' + board['mc'] + '|' + board['mr'])
+    print(board[3] + '|' + board[4] + '|' + board[5])
     print('-----')
-    print(board['ll'] + '|' + board['lc'] + '|' + board['lr'])
+    print(board[6] + '|' + board[7] + '|' + board[8])
     print()
 
 # Prompt for input. If valid, mark board.
 def request_move():
     print('Please input a square. You\'re playing as ' + player_choice + '. They are:')
-    print('ul|uc|ur')
+    print('0|1|2')
+    print('-----')
+    print('3|4|5')
     print('--------')
-    print('ml|mc|mr')
-    print('--------')
-    print('ll|lc|lr')
+    print('6|7|8')
 
     proceed = False
     while proceed == False:
         req_square = input('Input a square: ')
-        proceed = validate_input(req_square)	
-    mark_board(req_square, player_choice)
+        proceed = validate_input(int(req_square))	
+    mark_board(int(req_square), player_choice)
 
 # Confirm move is valid. Checks against position and if slot is empty.
 def validate_input(i):
-    valid_inputs = ['ul','uc','ur','ml','mc','mr','ll','lc','lr']
-    if i in valid_inputs:
-        if board[i] == " ":
-            return True
-        else:
-            return False
+    if (board[i] == " "):
+        print(True)
+        return True
     else:
+        print(False)
         return False
 
 # Take a position and a marker and mark the board appropriately.
@@ -53,23 +48,23 @@ def mark_board(var_space, player_marker):
 # Return True if X won, False if not.
 def check_win_x():
     # Horizontals
-    if board["ul"] == board["uc"] == board["ur"] == "X":
+    if board[0] == board[1] == board[2] == "X":
         return True
-    elif board["ml"] == board["mc"] == board["mr"] == "X":
+    elif board[3] == board[4] == board[5] == "X":
         return True
-    elif board["ll"] == board["lc"] == board["lr"] == "X":
+    elif board[6] == board[7] == board[8] == "X":
         return True
     # Verticals
-    elif board["ul"] == board["ml"] == board["ll"] == "X":
+    elif board[0] == board[3] == board[6] == "X":
         return True
-    elif board["uc"] == board["mc"] == board["lc"] == "X":
+    elif board[1] == board[4] == board[7] == "X":
         return True
-    elif board["ur"] == board["mr"] == board["lr"] == "X":
+    elif board[2] == board[5] == board[8] == "X":
         return True
     # Diags
-    elif board["ul"] == board["mc"] == board["lr"] == "X":
+    elif board[0] == board[4] == board[8] == "X":
         return True
-    elif board["ll"] == board["mc"] == board["ur"] == "X":
+    elif board[6] == board[4] == board[2] == "X":
         return True
     # No win
     else:
@@ -78,23 +73,23 @@ def check_win_x():
 # Return True if O won, False if not.
 def check_win_o():
     # Horizontals
-    if board["ul"] == board["uc"] == board["ur"] == "O":
+    if board[0] == board[1] == board[2] == "O":
         return True
-    elif board["ml"] == board["mc"] == board["mr"] == "O":
+    elif board[3] == board[4] == board[5] == "O":
         return True
-    elif board["ll"] == board["lc"] == board["lr"] == "O":
+    elif board[6] == board[7] == board[8] == "O":
         return True
     # Verticals
-    elif board["ul"] == board["ml"] == board["ll"] == "O":
+    elif board[0] == board[3] == board[6] == "O":
         return True
-    elif board["uc"] == board["mc"] == board["lc"] == "O":
+    elif board[1] == board[4] == board[7] == "O":
         return True
-    elif board["ur"] == board["mr"] == board["lr"] == "O":
+    elif board[2] == board[5] == board[8] == "O":
         return True
     # Diags
-    elif board["ul"] == board["mc"] == board["lr"] == "O":
+    elif board[0] == board[4] == board[8] == "O":
         return True
-    elif board["ll"] == board["mc"] == board["ur"] == "O":
+    elif board[6] == board[4] == board[2] == "O":
         return True
     # No win
     else:
